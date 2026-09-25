@@ -174,11 +174,23 @@ def build_pdf():
     # =========================================================
     # COVER PAGE
     # =========================================================
-    story.append(Spacer(1, 1.2 * inch))
+    story.append(Spacer(1, 0.7 * inch))
     story.append(Paragraph("HOSPITAL PATIENT SCHEDULING USING HEURISTIC FUNCTION AND HILL CLIMBING", title_style))
-    story.append(Spacer(1, 0.2 * inch))
+    story.append(Spacer(1, 0.15 * inch))
     story.append(Paragraph("A Multi-Objective Optimization System with Next.js 16, FastAPI, SQLite, and Best-Improvement Local Search", subtitle_style))
-    story.append(HRFlowable(width="60%", thickness=1.5, color=colors.HexColor("#2563eb"), spaceAfter=35, spaceBefore=10))
+    
+    github_link_style = ParagraphStyle(
+        'CoverGithubLink',
+        parent=styles['Normal'],
+        fontName='Helvetica-Bold',
+        fontSize=10,
+        leading=14,
+        textColor=colors.HexColor('#2563eb'),
+        alignment=1,
+        spaceAfter=10
+    )
+    story.append(Paragraph('GitHub Repository: <link href="https://github.com/tharunvaibhavss/AI_Heuristic_Hill_Climbing" color="#2563eb"><u>https://github.com/tharunvaibhavss/AI_Heuristic_Hill_Climbing</u></link>', github_link_style))
+    story.append(HRFlowable(width="60%", thickness=1.5, color=colors.HexColor("#2563eb"), spaceAfter=22, spaceBefore=8))
 
     meta_table_data = [
         [Paragraph("<b>Course / Domain:</b>", body_style), Paragraph("Artificial Intelligence & Combinatorial Optimization", body_style)],
@@ -189,6 +201,7 @@ def build_pdf():
         [Paragraph("<b>Backend Stack:</b>", body_style), Paragraph("Python 3.13, FastAPI, Pydantic v2, SQLAlchemy 2.0", body_style)],
         [Paragraph("<b>Database:</b>", body_style), Paragraph("SQLite (hospital_scheduling.db)", body_style)],
         [Paragraph("<b>Verified Benchmark:</b>", body_style), Paragraph("20 Patients, 4 Doctors, 3 Rooms | 0 Conflicts | WT=195m", body_style)],
+        [Paragraph("<b>GitHub Repository:</b>", body_style), Paragraph('<link href="https://github.com/tharunvaibhavss/AI_Heuristic_Hill_Climbing" color="#2563eb"><u>https://github.com/tharunvaibhavss/AI_Heuristic_Hill_Climbing</u></link>', body_style)],
         [Paragraph("<b>Evaluation Date:</b>", body_style), Paragraph("September 2026", body_style)],
     ]
     meta_table = Table(meta_table_data, colWidths=[2.0 * inch, 4.0 * inch])
@@ -203,7 +216,7 @@ def build_pdf():
     ]))
     story.append(meta_table)
 
-    story.append(Spacer(1, 1.2 * inch))
+    story.append(Spacer(1, 0.5 * inch))
     callout_data = [[Paragraph(
         "<b>ACADEMIC DECLARATION:</b> This report presents the full implementation, empirical evaluation, "
         "algorithmic audit, and mathematical validation of the Hospital Patient Scheduling system. All numerical "
